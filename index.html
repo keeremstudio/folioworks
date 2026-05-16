@@ -771,7 +771,7 @@
     return r;
   }
 
-  function render(p) {
+  function render(p, syncInput) {
     p = parseInt(p, 10);
     if (!p || p < 1) p = 1;
     if (p > 500) p = 500;
@@ -798,8 +798,10 @@
       }
     }
 
-    el = document.getElementById('pageInput');
-    if (el) el.value = p;
+    if (syncInput) {
+      el = document.getElementById('pageInput');
+      if (el) el.value = p;
+    }
 
     var btns = document.getElementsByClassName('calc-quick');
     for (var i = 0; i < btns.length; i++) {
@@ -813,24 +815,32 @@
     for (var i = 0; i < btns.length; i++) {
       (function(btn) {
         btn.addEventListener('click', function() {
-          render(parseInt(btn.getAttribute('data-page'), 10));
+          render(parseInt(btn.getAttribute('data-page'), 10), true);
         });
       })(btns[i]);
     }
 
     var minus = document.getElementById('calcMinus');
-    if (minus) minus.addEventListener('click', function() { render(_page - 10); });
+    if (minus) minus.addEventListener('click', function() { render(_page - 10, true); });
 
     var plus = document.getElementById('calcPlus');
-    if (plus) plus.addEventListener('click', function() { render(_page + 10); });
+    if (plus) plus.addEventListener('click', function() { render(_page + 10, true); });
 
     var inp = document.getElementById('pageInput');
     if (inp) {
-      inp.addEventListener('input',  function() { render(this.value); });
-      inp.addEventListener('change', function() { render(this.value); });
+      /* 타이핑 중: 빈 값이면 결과 갱신만 보류, 값이 있으면 입력란은 건드리지 않고 계산만 */
+      inp.addEventListener('input', function() {
+        var v = (this.value || '').replace(/[^0-9]/g, '');
+        if (v === '') return;
+        render(v, false);
+      });
+      /* 포커스 이탈: 빈 값이면 1로 보정하고 입력란 동기화 */
+      inp.addEventListener('change', function() {
+        render(this.value, true);
+      });
     }
 
-    render(100);
+    render(100, true);
   }
 
   if (document.readyState === 'loading') {
