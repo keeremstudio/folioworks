@@ -430,6 +430,36 @@
     line-height: 1.4;
   }
 
+  /* ── KAKAO OPENCHAT FEATURE ── */
+  .kakao-feature { text-align: center; }
+  .kakao-desc {
+    font-size: 12px;
+    color: rgba(255,255,255,.5);
+    line-height: 1.6;
+    margin-top: 8px;
+  }
+  .kakao-btn {
+    display: block;
+    margin-top: 16px;
+    background: #FEE500;
+    color: #191600;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 13px;
+    border-radius: 8px;
+    text-align: center;
+  }
+  .kakao-btn:active { transform: scale(.98); }
+  .kakao-link {
+    display: block;
+    font-size: 11px;
+    color: rgba(255,255,255,.4);
+    margin-top: 8px;
+    word-break: break-all;
+    text-decoration: none;
+  }
+
   /* ── FOOTER ── */
   footer {
     background: #0a0a0a;
@@ -729,20 +759,21 @@
 <!-- CONTACT -->
 <div class="contact">
   <h2 class="contact-title">폴리오웍스 편집문의</h2>
-  <p class="contact-sub">외주 문의 및 견적은 편하게 연락 주세요.<br>학교 규모, 페이지 수에 따라 맞춤 견적을 안내드립니다.</p>
+  <p class="contact-sub">졸업앨범 외주 문의 및 견적은 편하게 연락 주세요.</p>
   <div class="contact-cards">
-    <div class="contact-card">
-      <span class="contact-card-label">Phone</span>
-      <div class="contact-card-value">010.7126.7052</div>
+
+    <div class="contact-card full kakao-feature">
+      <span class="contact-card-label">카카오톡 오픈채팅</span>
+      <p class="kakao-desc">부담 없이 메시지 남겨주시면<br>확인 후 답변드립니다.</p>
+      <a href="https://open.kakao.com/o/saIsOgvi" class="kakao-btn" target="_blank" rel="noopener">오픈채팅으로 문의하기</a>
+      <a href="https://open.kakao.com/o/saIsOgvi" class="kakao-link" target="_blank" rel="noopener">open.kakao.com/o/saIsOgvi</a>
     </div>
-    <div class="contact-card">
-      <span class="contact-card-label">Kakao Channel</span>
-      <div class="contact-card-value">폴리오웍스</div>
-    </div>
-    <div class="contact-card full">
+
+    <a class="contact-card full" href="mailto:folioworksstudio@gmail.com" style="text-decoration:none;">
       <span class="contact-card-label">Email</span>
       <div class="contact-card-value">folioworksstudio@gmail.com</div>
-    </div>
+    </a>
+
   </div>
 </div>
 
