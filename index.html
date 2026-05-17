@@ -717,8 +717,8 @@
       </tr>
       <tr>
         <td>최소 편집비</td>
-        <td><div class="price-main">200,000원</div></td>
-        <td><div class="price-note">50페이지 미만 학교 적용</div></td>
+        <td><div class="price-main">280,000원</div></td>
+        <td><div class="price-note">70페이지 미만 학교 적용</div></td>
       </tr>
     </tbody>
   </table>
@@ -768,7 +768,7 @@
     </div>
 
     <p style="font-size:11px;color:#999;line-height:1.8;margin:0;">
-      ※ 페이지당 4,000원 · 50p 미만 최소 편집비 200,000원 적용
+      ※ 페이지당 4,000원 · 70p 미만 최소 편집비 280,000원 적용
     </p>
   </div>
 
@@ -810,7 +810,7 @@
   var _page = 100;
 
   function fee(p) {
-    if (p < 50) return { total: 200000, isMin: true };
+    if (p < 70) return { total: 280000, isMin: true };
     return { total: p * 4000, isMin: false };
   }
 
@@ -845,7 +845,7 @@
       if (r.isMin) {
         el.innerHTML =
           '<div class="calc-bd-row"><span class="calc-bd-label">' + p + 'p x 4,000원 = ' + fmt(p * 4000) + '원</span></div>' +
-          '<div class="calc-bd-row"><span class="calc-bd-label">최소 편집비 적용</span><span class="calc-bd-val accent">200,000원</span></div>';
+          '<div class="calc-bd-row"><span class="calc-bd-label">최소 편집비 적용</span><span class="calc-bd-val accent">280,000원</span></div>';
       } else {
         el.innerHTML =
           '<div class="calc-bd-row"><span class="calc-bd-label">' + p + 'p x 4,000원</span><span class="calc-bd-val">' + fmt(r.total) + '원</span></div>';
