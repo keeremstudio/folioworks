@@ -716,7 +716,7 @@
     <!-- 스테퍼 -->
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">
       <button type="button" id="calcMinus" class="calc-stepper-btn">−</button>
-      <input type="tel" inputmode="numeric" id="pageInput" value="100"
+      <input type="tel" inputmode="numeric" id="pageInput" value="80"
         style="flex:1;height:44px;border:1px solid #ddd;border-radius:8px;
                font-size:18px;font-weight:700;text-align:center;color:#111;background:#fff;" />
       <button type="button" id="calcPlus" class="calc-stepper-btn">+</button>
@@ -770,7 +770,7 @@
 
 <script>
 (function() {
-  var _page = 100;
+  var _page = 80;
 
   function fee(p) {
     if (p < 70) return { total: 280000, isMin: true };
@@ -845,15 +845,25 @@
 
     var inp = document.getElementById('pageInput');
     if (inp) {
-      /* 타이핑 중: 빈 값이면 결과 갱신만 보류, 값이 있으면 입력란은 건드리지 않고 계산만 */
+      /* 포커스: 현재 값 저장 후 입력란 비움 */
+      inp.addEventListener('focus', function() {
+        this._savedPage = _page;
+        this.value = '';
+      });
+      /* 타이핑 중: 숫자만 허용, 계산 즉시 반영 */
       inp.addEventListener('input', function() {
         var v = (this.value || '').replace(/[^0-9]/g, '');
+        this.value = v;
         if (v === '') return;
         render(v, false);
       });
-      /* 포커스 이탈: 빈 값이면 1로 보정하고 입력란 동기화 */
-      inp.addEventListener('change', function() {
-        render(this.value, true);
+      /* 포커스 이탈: 빈값이면 이전 값으로 복원 */
+      inp.addEventListener('blur', function() {
+        if ((this.value || '').trim() === '') {
+          render(this._savedPage || 80, true);
+        } else {
+          render(this.value, true);
+        }
       });
     }
 
@@ -884,7 +894,7 @@
       });
     }
 
-    render(100, true);
+    render(80, true);
   }
 
   if (document.readyState === 'loading') {
