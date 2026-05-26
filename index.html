@@ -101,6 +101,40 @@
     display: block;
   }
 
+  /* ── TABS ── */
+  .tab-bar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: var(--white);
+    border-bottom: 2px solid var(--gray-mid);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .tab-btn {
+    padding: 14px 10px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--gray);
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: color .15s;
+    line-height: 1.4;
+    word-break: keep-all;
+  }
+  .tab-btn.active {
+    color: var(--dark);
+    border-bottom-color: var(--orange);
+  }
+
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
   /* ── SECTIONS ── */
   section {
     background: var(--white);
@@ -486,6 +520,20 @@
   .calc-bd-label { color:#888; }
   .calc-bd-val { font-weight:700;color:#111; }
   .calc-bd-val.accent { color:#E8651A; }
+
+  /* 샘플 배너 */
+  .sample-banner {
+    display:flex;align-items:center;gap:12px;
+    background:#f0f7ff;border:1px solid #cce0f5;border-radius:10px;
+    padding:14px 16px;margin-top:14px;
+  }
+  .sample-banner-icon {
+    width:38px;height:38px;background:#dbeeff;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .sample-banner-text { flex:1; }
+  .sample-banner-title { font-size:13px;font-weight:700;color:#1a4a7a;margin-bottom:3px; }
+  .sample-banner-desc { font-size:12px;color:#4a7aaa;line-height:1.55; }
 </style>
 </head>
 <body>
@@ -494,7 +542,6 @@
 <header class="hero">
   <div class="hero-logo">FOLIO WORKS<sup>®</sup></div>
   <p class="hero-tagline">졸업앨범 편집의 새로운 기준</p>
-
 </header>
 
 <!-- STATS -->
@@ -517,244 +564,393 @@
   </div>
 </div>
 
-<!-- SERVICE -->
-<section>
-  <h2 class="section-title">졸업앨범 편집 서비스 안내</h2>
-  <p style="font-size:14px;line-height:1.8;color:#666;margin-top:14px;margin-bottom:20px;word-break:keep-all;">
-    스튜디오가 촬영과 영업에 집중할 수 있도록, 편집의 부담은 폴리오웍스가 전담합니다.
-  </p>
-  <div style="display:flex;flex-direction:column;gap:0;">
+<!-- TAB BAR -->
+<div class="tab-bar">
+  <button type="button" class="tab-btn active" data-tab="edit">졸업앨범<br>편집 서비스</button>
+  <button type="button" class="tab-btn" data-tab="retouch">AI 사진<br>보정 서비스</button>
+</div>
 
-    <div style="display:flex;align-items:flex-start;gap:16px;padding:18px 0;border-top:1px solid #ebebeb;">
-      <div style="width:36px;height:36px;border-radius:50%;background:#f5f5f5;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E8651A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-      </div>
-      <div>
-        <p style="font-size:14px;font-weight:700;color:#111;margin:0 0 5px;">편집 전담 구조</p>
-        <p style="font-size:13px;color:#666;line-height:1.75;margin:0;word-break:keep-all;">졸업앨범 내지 편집만을 전담합니다. 작업이 분산되지 않는 구조이기 때문에 일관된 품질과 납기를 유지할 수 있습니다.</p>
-      </div>
-    </div>
+<!-- ════════════════════════════════════
+     TAB 1 · 졸업앨범 편집 서비스
+════════════════════════════════════ -->
+<div id="tab-edit" class="tab-panel active">
 
-    <div style="display:flex;align-items:flex-start;gap:16px;padding:18px 0;border-top:1px solid #ebebeb;">
-      <div style="width:36px;height:36px;border-radius:50%;background:#f5f5f5;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E8651A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-      </div>
-      <div>
-        <p style="font-size:14px;font-weight:700;color:#111;margin:0 0 5px;">기존 템플릿 완성도 향상</p>
-        <p style="font-size:13px;color:#666;line-height:1.75;margin:0;word-break:keep-all;">기존 스튜디오 템플릿을 그대로 사용하면서도 전문 편집자의 손을 거쳐 더 정돈된 결과물로 돌려드립니다. 디자인 변경 없이 완성도를 높입니다.</p>
-      </div>
-    </div>
-
-    <div style="display:flex;align-items:flex-start;gap:16px;padding:18px 0;border-top:1px solid #ebebeb;border-bottom:1px solid #ebebeb;">
-      <div style="width:36px;height:36px;border-radius:50%;background:#f5f5f5;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E8651A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-      </div>
-      <div>
-        <p style="font-size:14px;font-weight:700;color:#111;margin:0 0 5px;">시즌이 쌓일수록 호흡이 맞아집니다</p>
-        <p style="font-size:13px;color:#666;line-height:1.75;margin:0;word-break:keep-all;">반복 의뢰할수록 스튜디오의 작업 방식과 선호를 파악해 커뮤니케이션 없이도 원하는 결과물을 만들어드립니다.</p>
-      </div>
-    </div>
-
-  </div>
-</section>
-<section>
-  <h2 class="section-title">작업 절차</h2>
-  <div class="process-flow">
-
-    <div class="process-step">
-      <div class="process-icon">
-        <!-- 의뢰접수 icon -->
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 2a7 7 0 1 0 0 14A7 7 0 0 0 12 2zm0 2a5 5 0 1 1 0 10A5 5 0 0 1 12 4zm.5 2.5h-1v4l3.5 2.1.5-.86-3-1.78V6.5zM4 20h16v2H4z"/>
-        </svg>
-      </div>
-      <span class="process-name">의뢰 접수</span>
-      <span class="process-detail">명단·사진<br>편집 지시서</span>
-      <span class="process-badge badge-studio">스튜디오 제공</span>
-    </div>
-
-    <div class="process-arrow">›</div>
-
-    <div class="process-step">
-      <div class="process-icon">
-        <!-- 내지편집 icon -->
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M3 3h18v18H3V3zm2 2v14h14V5H5zm2 2h10v2H7V7zm0 4h10v2H7v-2zm0 4h7v2H7v-2z"/>
-        </svg>
-      </div>
-      <span class="process-name">내지 편집</span>
-      <span class="process-detail">사진배치<br>레이아웃</span>
-      <span class="process-badge badge-folio">폴리오웍스 진행</span>
-    </div>
-
-    <div class="process-arrow">›</div>
-
-    <div class="process-step">
-      <div class="process-icon">
-        <!-- 수정반영 icon -->
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
-        </svg>
-      </div>
-      <span class="process-name">수정 반영</span>
-      <span class="process-detail">문서 또는<br>메일로 전달</span>
-      <span class="process-badge badge-studio">스튜디오 피드백</span>
-    </div>
-
-    <div class="process-arrow">›</div>
-
-    <div class="process-step">
-      <div class="process-icon">
-        <!-- 최종본전달 icon -->
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M6 2v6l2 2-2 2v6l16-8L6 2zm2 3.86L17.17 10 8 14.14V5.86z"/>
-        </svg>
-      </div>
-      <span class="process-name">최종본 전달</span>
-      <span class="process-detail">PDF<br>인쇄용 파일</span>
-      <span class="process-badge badge-folio">폴리오웍스 납품</span>
-    </div>
-
-  </div>
-</section>
-
-<!-- SERVICE CONDITIONS -->
-<section>
-  <h2 class="section-title">서비스 조건</h2>
-  <div class="cond-list">
-
-    <div class="cond-item">
-      <div class="cond-dot"></div>
-      <div class="cond-body">
-        <p class="cond-title">파일 완전 수령일 기준 시즌별 납기를 준수합니다.</p>
-        <p class="cond-note">
-          ※ 파일 완전 수령 기준 : 학생 명단·사진·편집 지시서 모두 수령된 시점<br>
-          ※ 오후 3시 이후 수령 건은 익영업일 수령으로 간주합니다.<br>
-          ※ 위 납기는 검토시안(1차 편집본) 전달 기준입니다.
-        </p>
-        <div style="margin-top:12px;display:flex;flex-direction:column;gap:8px;">
-          <div style="display:flex;align-items:baseline;gap:10px;">
-            <span style="font-size:12px;font-weight:700;background:#f0f0f0;color:#555;border-radius:4px;padding:2px 8px;white-space:nowrap;">표준 납기 · ~9월</span>
-            <span style="font-size:14px;color:#222;">파일 수령 후 <strong>1–2영업일</strong> 이내 납기</span>
-          </div>
-          <div style="display:flex;align-items:baseline;gap:10px;">
-            <span style="font-size:12px;font-weight:700;background:#f0f0f0;color:#555;border-radius:4px;padding:2px 8px;white-space:nowrap;">시즌 납기 · 10월~</span>
-            <span style="font-size:14px;color:#222;">파일 수령 후 <strong>3–4영업일</strong> 이내 납기</span>
-          </div>
-          <div style="display:flex;align-items:baseline;gap:10px;">
-            <span style="font-size:12px;font-weight:700;background:#fff3ec;color:#E8651A;border:1px solid #ffd6b8;border-radius:4px;padding:2px 8px;white-space:nowrap;">긴급 납기 · 10월~</span>
-            <span style="font-size:14px;color:#222;"><strong>2영업일 이내</strong> 진행 시 편집비의 <strong>30% 추가</strong></span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="cond-item">
-      <div class="cond-dot"></div>
-      <div class="cond-body">
-        <p class="cond-title">수정은 <span class="accent">3회 무상</span>으로 제공됩니다.</p>
-        <p class="cond-note">
-          ※ 수정 1회 = 한 차례 피드백을 취합하여 반영한 파일 전달 1건 기준<br>
-          ※ 4회차 이후 추가 수정은 건당 20,000원이 적용됩니다.
-        </p>
-        <div class="callout callout-orange">
-          편집자 오류(명단 오기입, 사진 누락, 레이아웃 오적용 등)로 인한 수정은 횟수 제한 없이 무상으로 처리합니다.
-        </div>
-      </div>
-    </div>
-
-    <div class="cond-item">
-      <div class="cond-dot"></div>
-      <div class="cond-body">
-        <p class="cond-title">편집비는 <span class="accent">이미지 보정본 전달 기준</span>으로 산정됩니다.</p>
-        <p class="cond-note">
-          ※ 스튜디오에서 보정이 완료된 이미지를 전달해 주셔야 편집이 진행됩니다.<br>
-          ※ 사진 보정이 필요한 경우 별도 문의해 주세요.
-        </p>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- PRICING -->
-<section>
-  <h2 class="section-title">편집비 안내</h2>
-
-  <div class="pricing-label"><span>01</span> 기본 편집비 &nbsp;페이지당 단가 기준</div>
-  <table>
-    <thead>
-      <tr>
-        <th>구분</th>
-        <th>단가</th>
-        <th>적용 기준</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>기본 편집비</td>
-        <td><div class="price-main">4,000원</div></td>
-        <td><div class="price-note">페이지당</div></td>
-      </tr>
-      <tr>
-        <td>최소 편집비</td>
-        <td><div class="price-main">280,000원</div></td>
-        <td><div class="price-note">70페이지 미만 학교 적용</div></td>
-      </tr>
-    </tbody>
-  </table>
-
-  <div class="notice-box">
-    <strong>* 편집비는 앨범의 총 페이지 수만을 기준으로 산정합니다.</strong>
-  </div>
-
-  <div class="pricing-label" style="margin-top:28px"><span>02</span> 견적 계산기</div>
-
-  <!-- CALCULATOR -->
-  <div style="margin-top:16px;">
-
-    <!-- 퀵 버튼 -->
-    <div id="quickBtns" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;">
-      <button type="button" class="calc-quick" data-page="60">60p</button>
-      <button type="button" class="calc-quick" data-page="80">80p</button>
-      <button type="button" class="calc-quick" data-page="100">100p</button>
-      <button type="button" class="calc-quick" data-page="150">150p</button>
-      <button type="button" class="calc-quick" data-page="200">200p</button>
-      <button type="button" class="calc-quick" data-page="250">250p</button>
-      <button type="button" class="calc-quick" data-page="300">300p</button>
-    </div>
-
-    <!-- 스테퍼 -->
-    <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">
-      <button type="button" id="calcMinus" class="calc-stepper-btn">−</button>
-      <input type="tel" inputmode="numeric" id="pageInput" value="80"
-        style="flex:1;height:44px;border:1px solid #ddd;border-radius:8px;
-               font-size:18px;font-weight:700;text-align:center;color:#111;background:#fff;" />
-      <button type="button" id="calcPlus" class="calc-stepper-btn">+</button>
-      <span style="font-size:13px;color:#888;">페이지</span>
-    </div>
-
-    <!-- 결과 카드 -->
-    <div style="background:#f5f5f5;border-radius:10px;padding:18px 16px;margin-bottom:12px;">
-      <div style="font-size:11px;color:#888;margin-bottom:6px;letter-spacing:.3px;">총 편집비</div>
-      <div id="calcTotal" style="font-size:30px;font-weight:900;color:#111;line-height:1;">
-        400,000<span style="font-size:16px;font-weight:400;color:#888;margin-left:2px;">원</span>
-      </div>
-      <div id="calcMinBadge" style="display:none;margin-top:8px;">
-        <span style="display:inline-block;font-size:11px;font-weight:700;
-                     background:#fff3ec;color:#E8651A;border:1px solid #ffd6b8;
-                     border-radius:4px;padding:3px 8px;">최소 편집비 적용</span>
-      </div>
-      <div id="calcBreakdown" style="border-top:1px solid #e0e0e0;margin-top:14px;padding-top:14px;"></div>
-    </div>
-
-    <p style="font-size:11px;color:#999;line-height:1.8;margin:0;">
-      ※ 페이지당 4,000원 · 70p 미만 최소 편집비 280,000원 적용
+  <!-- SERVICE -->
+  <section>
+    <h2 class="section-title">서비스 안내</h2>
+    <p style="font-size:14px;line-height:1.8;color:#666;margin-top:14px;margin-bottom:20px;word-break:keep-all;">
+      스튜디오가 촬영과 영업에 집중할 수 있도록, 편집의 부담은 폴리오웍스가 전담합니다.
     </p>
-  </div>
+    <div style="display:flex;flex-direction:column;gap:0;">
 
-</section>
+      <div style="display:flex;align-items:flex-start;gap:16px;padding:18px 0;border-top:1px solid #ebebeb;">
+        <div style="width:36px;height:36px;border-radius:50%;background:#f5f5f5;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E8651A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <div>
+          <p style="font-size:14px;font-weight:700;color:#111;margin:0 0 5px;">편집 전담 구조</p>
+          <p style="font-size:13px;color:#666;line-height:1.75;margin:0;word-break:keep-all;">졸업앨범 내지 편집만을 전담합니다. 작업이 분산되지 않는 구조이기 때문에 일관된 품질과 납기를 유지할 수 있습니다.</p>
+        </div>
+      </div>
 
+      <div style="display:flex;align-items:flex-start;gap:16px;padding:18px 0;border-top:1px solid #ebebeb;">
+        <div style="width:36px;height:36px;border-radius:50%;background:#f5f5f5;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E8651A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        </div>
+        <div>
+          <p style="font-size:14px;font-weight:700;color:#111;margin:0 0 5px;">기존 템플릿 완성도 향상</p>
+          <p style="font-size:13px;color:#666;line-height:1.75;margin:0;word-break:keep-all;">기존 스튜디오 템플릿을 그대로 사용하면서도 전문 편집자의 손을 거쳐 더 정돈된 결과물로 돌려드립니다. 디자인 변경 없이 완성도를 높입니다.</p>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:flex-start;gap:16px;padding:18px 0;border-top:1px solid #ebebeb;border-bottom:1px solid #ebebeb;">
+        <div style="width:36px;height:36px;border-radius:50%;background:#f5f5f5;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E8651A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div>
+          <p style="font-size:14px;font-weight:700;color:#111;margin:0 0 5px;">시즌이 쌓일수록 호흡이 맞아집니다</p>
+          <p style="font-size:13px;color:#666;line-height:1.75;margin:0;word-break:keep-all;">반복 의뢰할수록 스튜디오의 작업 방식과 선호를 파악해 커뮤니케이션 없이도 원하는 결과물을 만들어드립니다.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section>
+    <h2 class="section-title">작업 절차</h2>
+    <div class="process-flow">
+
+      <div class="process-step">
+        <div class="process-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2a7 7 0 1 0 0 14A7 7 0 0 0 12 2zm0 2a5 5 0 1 1 0 10A5 5 0 0 1 12 4zm.5 2.5h-1v4l3.5 2.1.5-.86-3-1.78V6.5zM4 20h16v2H4z"/>
+          </svg>
+        </div>
+        <span class="process-name">의뢰 접수</span>
+        <span class="process-detail">명단·사진<br>편집 지시서</span>
+        <span class="process-badge badge-studio">스튜디오 제공</span>
+      </div>
+
+      <div class="process-arrow">›</div>
+
+      <div class="process-step">
+        <div class="process-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 3h18v18H3V3zm2 2v14h14V5H5zm2 2h10v2H7V7zm0 4h10v2H7v-2zm0 4h7v2H7v-2z"/>
+          </svg>
+        </div>
+        <span class="process-name">내지 편집</span>
+        <span class="process-detail">사진배치<br>레이아웃</span>
+        <span class="process-badge badge-folio">폴리오웍스 진행</span>
+      </div>
+
+      <div class="process-arrow">›</div>
+
+      <div class="process-step">
+        <div class="process-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+          </svg>
+        </div>
+        <span class="process-name">수정 반영</span>
+        <span class="process-detail">문서 또는<br>메일로 전달</span>
+        <span class="process-badge badge-studio">스튜디오 피드백</span>
+      </div>
+
+      <div class="process-arrow">›</div>
+
+      <div class="process-step">
+        <div class="process-icon">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 2v6l2 2-2 2v6l16-8L6 2zm2 3.86L17.17 10 8 14.14V5.86z"/>
+          </svg>
+        </div>
+        <span class="process-name">최종본 전달</span>
+        <span class="process-detail">PDF<br>인쇄용 파일</span>
+        <span class="process-badge badge-folio">폴리오웍스 납품</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SERVICE CONDITIONS -->
+  <section>
+    <h2 class="section-title">서비스 조건</h2>
+    <div class="cond-list">
+
+      <div class="cond-item">
+        <div class="cond-dot"></div>
+        <div class="cond-body">
+          <p class="cond-title">파일 완전 수령일 기준 시즌별 납기를 준수합니다.</p>
+          <p class="cond-note">
+            ※ 파일 완전 수령 기준 : 학생 명단·사진·편집 지시서 모두 수령된 시점<br>
+            ※ 오후 3시 이후 수령 건은 익영업일 수령으로 간주합니다.<br>
+            ※ 위 납기는 검토시안(1차 편집본) 전달 기준입니다.
+          </p>
+          <div style="margin-top:12px;display:flex;flex-direction:column;gap:8px;">
+            <div style="display:flex;align-items:baseline;gap:10px;">
+              <span style="font-size:12px;font-weight:700;background:#f0f0f0;color:#555;border-radius:4px;padding:2px 8px;white-space:nowrap;">표준 납기 · ~9월</span>
+              <span style="font-size:14px;color:#222;">파일 수령 후 <strong>1–2영업일</strong> 이내 납기</span>
+            </div>
+            <div style="display:flex;align-items:baseline;gap:10px;">
+              <span style="font-size:12px;font-weight:700;background:#f0f0f0;color:#555;border-radius:4px;padding:2px 8px;white-space:nowrap;">시즌 납기 · 10월~</span>
+              <span style="font-size:14px;color:#222;">파일 수령 후 <strong>3–4영업일</strong> 이내 납기</span>
+            </div>
+            <div style="display:flex;align-items:baseline;gap:10px;">
+              <span style="font-size:12px;font-weight:700;background:#fff3ec;color:#E8651A;border:1px solid #ffd6b8;border-radius:4px;padding:2px 8px;white-space:nowrap;">긴급 납기 · 10월~</span>
+              <span style="font-size:14px;color:#222;"><strong>2영업일 이내</strong> 진행 시 편집비의 <strong>30% 추가</strong></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cond-item">
+        <div class="cond-dot"></div>
+        <div class="cond-body">
+          <p class="cond-title">수정은 <span class="accent">3회 무상</span>으로 제공됩니다.</p>
+          <p class="cond-note">
+            ※ 수정 1회 = 한 차례 피드백을 취합하여 반영한 파일 전달 1건 기준<br>
+            ※ 4회차 이후 추가 수정은 건당 20,000원이 적용됩니다.
+          </p>
+          <div class="callout callout-orange">
+            편집자 오류(명단 오기입, 사진 누락, 레이아웃 오적용 등)로 인한 수정은 횟수 제한 없이 무상으로 처리합니다.
+          </div>
+        </div>
+      </div>
+
+      <div class="cond-item">
+        <div class="cond-dot"></div>
+        <div class="cond-body">
+          <p class="cond-title">편집비는 <span class="accent">이미지 보정본 전달 기준</span>으로 산정됩니다.</p>
+          <p class="cond-note">
+            ※ 스튜디오에서 보정이 완료된 이미지를 전달해 주셔야 편집이 진행됩니다.<br>
+            ※ 사진 보정이 필요한 경우 AI 사진 보정 서비스 탭을 확인해 주세요.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section>
+    <h2 class="section-title">편집비 안내</h2>
+
+    <div class="pricing-label"><span>01</span> 기본 편집비 &nbsp;페이지당 단가 기준</div>
+    <table>
+      <thead>
+        <tr>
+          <th>구분</th>
+          <th>단가</th>
+          <th>적용 기준</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>기본 편집비</td>
+          <td><div class="price-main">4,000원</div></td>
+          <td><div class="price-note">페이지당</div></td>
+        </tr>
+        <tr>
+          <td>최소 편집비</td>
+          <td><div class="price-main">280,000원</div></td>
+          <td><div class="price-note">70페이지 미만 학교 적용</div></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="notice-box">
+      <strong>* 편집비는 앨범의 총 페이지 수만을 기준으로 산정합니다.</strong>
+    </div>
+
+    <div class="pricing-label" style="margin-top:28px"><span>02</span> 견적 계산기</div>
+
+    <div style="margin-top:16px;">
+      <div id="quickBtns" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;">
+        <button type="button" class="calc-quick" data-page="60">60p</button>
+        <button type="button" class="calc-quick" data-page="80">80p</button>
+        <button type="button" class="calc-quick" data-page="100">100p</button>
+        <button type="button" class="calc-quick" data-page="150">150p</button>
+        <button type="button" class="calc-quick" data-page="200">200p</button>
+        <button type="button" class="calc-quick" data-page="250">250p</button>
+        <button type="button" class="calc-quick" data-page="300">300p</button>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">
+        <button type="button" id="calcMinus" class="calc-stepper-btn">−</button>
+        <input type="tel" inputmode="numeric" id="pageInput" value="80"
+          style="flex:1;height:44px;border:1px solid #ddd;border-radius:8px;
+                 font-size:18px;font-weight:700;text-align:center;color:#111;background:#fff;" />
+        <button type="button" id="calcPlus" class="calc-stepper-btn">+</button>
+        <span style="font-size:13px;color:#888;">페이지</span>
+      </div>
+
+      <div style="background:#f5f5f5;border-radius:10px;padding:18px 16px;margin-bottom:12px;">
+        <div style="font-size:11px;color:#888;margin-bottom:6px;letter-spacing:.3px;">총 편집비</div>
+        <div id="calcTotal" style="font-size:30px;font-weight:900;color:#111;line-height:1;">
+          400,000<span style="font-size:16px;font-weight:400;color:#888;margin-left:2px;">원</span>
+        </div>
+        <div id="calcMinBadge" style="display:none;margin-top:8px;">
+          <span style="display:inline-block;font-size:11px;font-weight:700;
+                       background:#fff3ec;color:#E8651A;border:1px solid #ffd6b8;
+                       border-radius:4px;padding:3px 8px;">최소 편집비 적용</span>
+        </div>
+        <div id="calcBreakdown" style="border-top:1px solid #e0e0e0;margin-top:14px;padding-top:14px;"></div>
+      </div>
+
+      <p style="font-size:11px;color:#999;line-height:1.8;margin:0;">
+        ※ 페이지당 4,000원 · 70p 미만 최소 편집비 280,000원 적용
+      </p>
+    </div>
+
+  </section>
+
+</div><!-- /tab-edit -->
+
+
+<!-- ════════════════════════════════════
+     TAB 2 · AI 사진 보정 서비스
+════════════════════════════════════ -->
+<div id="tab-retouch" class="tab-panel">
+
+  <section>
+    <h2 class="section-title">AI 사진 보정 서비스</h2>
+
+    <p style="font-size:14px;line-height:1.85;color:#666;margin-top:14px;word-break:keep-all;">
+      편집 의뢰 전 보정이 필요한 경우, 별도 신청 없이 함께 맡겨두세요.
+      AI 보정 툴로 빠르고 균일하게 처리해드립니다.
+    </p>
+
+    <!-- 샘플 배너 -->
+    <div class="sample-banner">
+      <div class="sample-banner-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2a6db5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      </div>
+      <div class="sample-banner-text">
+        <p class="sample-banner-title">먼저 샘플 보정본을 받아보세요</p>
+        <p class="sample-banner-desc">의뢰 전, 실제 사진으로 보정 결과물을 먼저 확인하실 수 있습니다. 부담 없이 문의해 주시면 샘플본을 보내드립니다.</p>
+      </div>
+    </div>
+
+    <!-- 메리트 3개 -->
+    <div style="display:flex;flex-direction:column;gap:0;margin-top:24px;">
+
+      <div style="display:flex;align-items:flex-start;gap:14px;padding:16px 0;border-top:1px solid #ebebeb;">
+        <div style="width:36px;height:36px;border-radius:50%;background:#fff3ec;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E8651A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div>
+          <p style="font-size:14px;font-weight:700;color:#111;margin:0 0 4px;">보정 기다리는 시간, 이제 없습니다</p>
+          <p style="font-size:13px;color:#666;line-height:1.75;margin:0;word-break:keep-all;">파일을 받은 날 보정을 시작합니다. 편집 납기에 보정 대기 시간이 더해지지 않아, 전체 일정이 짧아집니다.</p>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:flex-start;gap:14px;padding:16px 0;border-top:1px solid #ebebeb;">
+        <div style="width:36px;height:36px;border-radius:50%;background:#fff3ec;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E8651A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 13h6M9 17h4"/></svg>
+        </div>
+        <div>
+          <p style="font-size:14px;font-weight:700;color:#111;margin:0 0 4px;">전교생 색감이 한 톤으로 통일됩니다</p>
+          <p style="font-size:13px;color:#666;line-height:1.75;margin:0;word-break:keep-all;">실내·야외·개인·단체 사진을 일관된 색감으로 맞춥니다. 앨범을 펼쳤을 때 사진이 따로 노는 문제가 사라집니다.</p>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:flex-start;gap:14px;padding:16px 0;border-top:1px solid #ebebeb;border-bottom:1px solid #ebebeb;">
+        <div style="width:36px;height:36px;border-radius:50%;background:#fff3ec;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E8651A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div>
+          <p style="font-size:14px;font-weight:700;color:#111;margin:0 0 4px;">창구 하나로 편집까지 완결됩니다</p>
+          <p style="font-size:13px;color:#666;line-height:1.75;margin:0;word-break:keep-all;">보정 업체 따로, 편집 업체 따로 연락할 필요가 없습니다. 파일 하나만 주시면 보정부터 편집 납품까지 일괄 처리합니다.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 요금 안내 -->
+    <div style="margin-top:28px;">
+      <div class="pricing-label"><span>보정비</span> 실제 보정 장수 기준 구간 요금</div>
+
+      <div style="background:#f5f5f5;border-radius:10px;overflow:hidden;margin-bottom:12px;">
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;background:#111;padding:10px 14px;">
+          <span style="font-size:11px;font-weight:700;color:rgba(255,255,255,.5);">구간</span>
+          <span style="font-size:11px;font-weight:700;color:rgba(255,255,255,.5);text-align:center;">보정 장수</span>
+          <span style="font-size:11px;font-weight:700;color:rgba(255,255,255,.5);text-align:right;">요금</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:13px 14px;border-bottom:1px solid #e8e8e8;align-items:center;">
+          <span style="font-size:13px;font-weight:700;color:#111;">A</span>
+          <span style="font-size:12px;color:#666;text-align:center;">~ 300장</span>
+          <span style="font-size:16px;font-weight:900;color:#111;text-align:right;">300,000원</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:13px 14px;border-bottom:1px solid #e8e8e8;align-items:center;background:#fff;">
+          <span style="font-size:13px;font-weight:700;color:#111;">B</span>
+          <span style="font-size:12px;color:#666;text-align:center;">301 ~ 600장</span>
+          <span style="font-size:16px;font-weight:900;color:#111;text-align:right;">400,000원</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:13px 14px;border-bottom:1px solid #e8e8e8;align-items:center;">
+          <span style="font-size:13px;font-weight:700;color:#111;">C</span>
+          <span style="font-size:12px;color:#666;text-align:center;">601 ~ 900장</span>
+          <span style="font-size:16px;font-weight:900;color:#111;text-align:right;">500,000원</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;padding:13px 14px;align-items:center;background:#fff;">
+          <span style="font-size:13px;font-weight:700;color:#111;">D</span>
+          <span style="font-size:12px;color:#666;text-align:center;">901장 이상</span>
+          <span style="font-size:16px;font-weight:900;color:#E8651A;text-align:right;">600,000원</span>
+        </div>
+      </div>
+
+      <div class="notice-box" style="margin-bottom:12px;">
+        <strong>* 보정 장수 = 학생 수 × 1인당 촬영 컷 수</strong><br>
+        예) 100명 학교, 1인 4컷 촬영 → 보정 장수 400장 → B구간 적용
+      </div>
+
+      <!-- 보정 장수 계산기 -->
+      <div class="pricing-label" style="margin-top:20px;"><span>계산기</span> 보정 장수 & 요금 확인</div>
+      <div style="background:#f5f5f5;border-radius:10px;padding:18px 16px;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+          <span style="font-size:13px;color:#555;white-space:nowrap;width:72px;">학생 수</span>
+          <button type="button" class="calc-stepper-btn" id="rMinus1">−</button>
+          <input type="tel" inputmode="numeric" id="rStu" value="100"
+            style="flex:1;height:44px;border:1px solid #ddd;border-radius:8px;
+                   font-size:17px;font-weight:700;text-align:center;color:#111;background:#fff;" />
+          <button type="button" class="calc-stepper-btn" id="rPlus1">+</button>
+          <span style="font-size:13px;color:#888;">명</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
+          <span style="font-size:13px;color:#555;white-space:nowrap;width:72px;">1인 컷 수</span>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            <button type="button" class="calc-quick rcut-btn active" data-cut="3">3컷</button>
+            <button type="button" class="calc-quick rcut-btn" data-cut="4">4컷</button>
+            <button type="button" class="calc-quick rcut-btn" data-cut="5">5컷</button>
+            <button type="button" class="calc-quick rcut-btn" data-cut="6">6컷</button>
+          </div>
+        </div>
+        <div style="border-top:1px solid #e0e0e0;padding-top:14px;">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+            <span style="font-size:12px;color:#888;">실제 보정 장수</span>
+            <span id="rPhotoCount" style="font-size:18px;font-weight:900;color:#111;">300장</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+            <span style="font-size:12px;color:#888;">적용 구간</span>
+            <span id="rTier" style="font-size:13px;font-weight:700;color:#E8651A;">A구간</span>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;">
+            <span style="font-size:12px;color:#888;">보정비</span>
+            <span id="rPrice" style="font-size:26px;font-weight:900;color:#111;">300,000<span style="font-size:14px;font-weight:400;color:#888;margin-left:2px;">원</span></span>
+          </div>
+        </div>
+      </div>
+
+      <p style="font-size:11px;color:#999;line-height:1.8;margin-top:8px;">
+        ※ 보정비는 편집비와 별도로 청구됩니다.<br>
+        ※ 보정 완료 파일이 있는 경우 편집만 의뢰하실 수 있습니다.
+      </p>
+    </div>
+
+  </section>
+
+</div><!-- /tab-retouch -->
 
 
 <!-- CONTACT -->
@@ -781,138 +977,122 @@
 
 <script>
 (function() {
-  var _page = 80;
 
-  function fee(p) {
-    if (p < 70) return { total: 280000, isMin: true };
-    return { total: p * 4000, isMin: false };
-  }
+  /* ── 탭 전환 ── */
+  var tabBtns = document.querySelectorAll('.tab-btn');
+  var tabPanels = document.querySelectorAll('.tab-panel');
+  tabBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var target = btn.getAttribute('data-tab');
+      tabBtns.forEach(function(b) { b.classList.remove('active'); });
+      tabPanels.forEach(function(p) { p.classList.remove('active'); });
+      btn.classList.add('active');
+      var panel = document.getElementById('tab-' + target);
+      if (panel) panel.classList.add('active');
+    });
+  });
 
-  function fmt(n) {
-    var s = '' + Math.round(n);
-    var r = '';
-    var len = s.length;
-    for (var i = 0; i < len; i++) {
-      if (i > 0 && (len - i) % 3 === 0) r += ',';
-      r += s[i];
-    }
+  /* ── 보정 계산기 ── */
+  var _rStu = 100;
+  var _rCut = 3;
+  var rTiers = [
+    { max: 300,      label: 'A구간', price: 300000 },
+    { max: 600,      label: 'B구간', price: 400000 },
+    { max: 900,      label: 'C구간', price: 500000 },
+    { max: Infinity, label: 'D구간', price: 600000 },
+  ];
+
+  function rFmt(n) {
+    var s = '' + Math.round(n); var r = ''; var len = s.length;
+    for (var i = 0; i < len; i++) { if (i > 0 && (len - i) % 3 === 0) r += ','; r += s[i]; }
     return r;
   }
 
-  function render(p, syncInput) {
-    p = parseInt(p, 10);
-    if (!p || p < 1) p = 1;
-    if (p > 500) p = 500;
-    _page = p;
-
-    var r = fee(p);
+  function rRender() {
+    var photos = _rStu * _rCut;
+    var tier = rTiers[rTiers.length - 1];
+    for (var i = 0; i < rTiers.length; i++) { if (photos <= rTiers[i].max) { tier = rTiers[i]; break; } }
     var el;
+    el = document.getElementById('rPhotoCount'); if (el) el.textContent = rFmt(photos) + '장';
+    el = document.getElementById('rTier');       if (el) el.textContent = tier.label;
+    el = document.getElementById('rPrice');
+    if (el) el.innerHTML = rFmt(tier.price) + '<span style="font-size:14px;font-weight:400;color:#888;margin-left:2px;">원</span>';
+  }
 
+  var m1 = document.getElementById('rMinus1');
+  if (m1) m1.addEventListener('click', function() { _rStu = Math.max(1, _rStu - 10); var inp = document.getElementById('rStu'); if (inp) inp.value = _rStu; rRender(); });
+  var p1 = document.getElementById('rPlus1');
+  if (p1) p1.addEventListener('click', function() { _rStu = Math.min(999, _rStu + 10); var inp = document.getElementById('rStu'); if (inp) inp.value = _rStu; rRender(); });
+  var rInp = document.getElementById('rStu');
+  if (rInp) {
+    rInp.addEventListener('focus', function() { this._saved = _rStu; this.value = ''; });
+    rInp.addEventListener('input', function() { var v = (this.value||'').replace(/[^0-9]/g,''); this.value=v; if(v){_rStu=Math.min(999,Math.max(1,parseInt(v,10)));rRender();} });
+    rInp.addEventListener('blur',  function() { if(!(this.value||'').trim()){_rStu=this._saved||100;this.value=_rStu;} rRender(); });
+  }
+  var cutBtns = document.getElementsByClassName('rcut-btn');
+  for (var ci = 0; ci < cutBtns.length; ci++) {
+    (function(btn){ btn.addEventListener('click', function() {
+      _rCut = parseInt(btn.getAttribute('data-cut'), 10);
+      for (var j=0;j<cutBtns.length;j++) cutBtns[j].className = cutBtns[j].className.replace(' active','');
+      btn.className += ' active'; rRender();
+    }); })(cutBtns[ci]);
+  }
+  rRender();
+
+  /* ── 편집비 계산기 ── */
+  var _page = 80;
+  function fee(p) { if (p < 70) return { total: 280000, isMin: true }; return { total: p * 4000, isMin: false }; }
+  function fmt(n) { var s=''+Math.round(n);var r='';var len=s.length;for(var i=0;i<len;i++){if(i>0&&(len-i)%3===0)r+=',';r+=s[i];}return r; }
+
+  function render(p, syncInput) {
+    p = parseInt(p, 10); if (!p || p < 1) p = 1; if (p > 500) p = 500; _page = p;
+    var r = fee(p); var el;
     el = document.getElementById('calcTotal');
     if (el) el.innerHTML = fmt(r.total) + '<span style="font-size:16px;font-weight:400;color:#888;margin-left:2px;">원</span>';
-
     el = document.getElementById('calcMinBadge');
     if (el) el.style.display = r.isMin ? 'block' : 'none';
-
     el = document.getElementById('calcBreakdown');
     if (el) {
       if (r.isMin) {
-        el.innerHTML =
-          '<div class="calc-bd-row"><span class="calc-bd-label">' + p + 'p x 4,000원 = ' + fmt(p * 4000) + '원</span></div>' +
-          '<div class="calc-bd-row"><span class="calc-bd-label">최소 편집비 적용</span><span class="calc-bd-val accent">280,000원</span></div>';
+        el.innerHTML = '<div class="calc-bd-row"><span class="calc-bd-label">'+p+'p x 4,000원 = '+fmt(p*4000)+'원</span></div>'+
+                       '<div class="calc-bd-row"><span class="calc-bd-label">최소 편집비 적용</span><span class="calc-bd-val accent">280,000원</span></div>';
       } else {
-        el.innerHTML =
-          '<div class="calc-bd-row"><span class="calc-bd-label">' + p + 'p x 4,000원</span><span class="calc-bd-val">' + fmt(r.total) + '원</span></div>';
+        el.innerHTML = '<div class="calc-bd-row"><span class="calc-bd-label">'+p+'p x 4,000원</span><span class="calc-bd-val">'+fmt(r.total)+'원</span></div>';
       }
     }
-
-    if (syncInput) {
-      el = document.getElementById('pageInput');
-      if (el) el.value = p;
-    }
-
+    if (syncInput) { el = document.getElementById('pageInput'); if (el) el.value = p; }
     var btns = document.getElementsByClassName('calc-quick');
-    for (var i = 0; i < btns.length; i++) {
+    for (var i=0;i<btns.length;i++) {
       var dp = parseInt(btns[i].getAttribute('data-page'), 10);
-      btns[i].className = (dp === p) ? 'calc-quick active' : 'calc-quick';
+      if (!isNaN(dp)) btns[i].className = (dp === p) ? 'calc-quick active' : 'calc-quick';
     }
   }
 
-  function init() {
-    var btns = document.getElementsByClassName('calc-quick');
-    for (var i = 0; i < btns.length; i++) {
-      (function(btn) {
-        btn.addEventListener('click', function() {
-          render(parseInt(btn.getAttribute('data-page'), 10), true);
-        });
-      })(btns[i]);
-    }
-
-    var minus = document.getElementById('calcMinus');
-    if (minus) minus.addEventListener('click', function() { render(_page - 10, true); });
-
-    var plus = document.getElementById('calcPlus');
-    if (plus) plus.addEventListener('click', function() { render(_page + 10, true); });
-
-    var inp = document.getElementById('pageInput');
-    if (inp) {
-      /* 포커스: 현재 값 저장 후 입력란 비움 */
-      inp.addEventListener('focus', function() {
-        this._savedPage = _page;
-        this.value = '';
-      });
-      /* 타이핑 중: 숫자만 허용, 계산 즉시 반영 */
-      inp.addEventListener('input', function() {
-        var v = (this.value || '').replace(/[^0-9]/g, '');
-        this.value = v;
-        if (v === '') return;
-        render(v, false);
-      });
-      /* 포커스 이탈: 빈값이면 이전 값으로 복원 */
-      inp.addEventListener('blur', function() {
-        if ((this.value || '').trim() === '') {
-          render(this._savedPage || 80, true);
-        } else {
-          render(this.value, true);
-        }
-      });
-    }
-
-    var copyBtn = document.getElementById('emailCopyBtn');
-    if (copyBtn) {
-      copyBtn.addEventListener('click', function() {
-        var email = 'folioworksstudio@gmail.com';
-        var btn = this;
-        function showDone() {
-          btn.textContent = '복사됨';
-          setTimeout(function() { btn.textContent = '복사'; }, 1500);
-        }
-        function fallback() {
-          var ta = document.createElement('textarea');
-          ta.value = email;
-          ta.style.position = 'fixed';
-          ta.style.left = '-9999px';
-          document.body.appendChild(ta);
-          ta.select();
-          try { document.execCommand('copy'); showDone(); } catch (e) {}
-          document.body.removeChild(ta);
-        }
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(email).then(showDone, fallback);
-        } else {
-          fallback();
-        }
-      });
-    }
-
-    render(80, true);
+  var qBtns = document.getElementsByClassName('calc-quick');
+  for (var qi=0;qi<qBtns.length;qi++) {
+    (function(btn){ if(btn.getAttribute('data-page')) btn.addEventListener('click', function(){ render(parseInt(btn.getAttribute('data-page'),10),true); }); })(qBtns[qi]);
+  }
+  var minus = document.getElementById('calcMinus'); if (minus) minus.addEventListener('click', function(){ render(_page-10,true); });
+  var plus  = document.getElementById('calcPlus');  if (plus)  plus.addEventListener('click',  function(){ render(_page+10,true); });
+  var inp = document.getElementById('pageInput');
+  if (inp) {
+    inp.addEventListener('focus', function(){ this._savedPage=_page; this.value=''; });
+    inp.addEventListener('input', function(){ var v=(this.value||'').replace(/[^0-9]/g,'');this.value=v;if(v==='')return;render(v,false); });
+    inp.addEventListener('blur',  function(){ if((this.value||'').trim()===''){render(this._savedPage||80,true);}else{render(this.value,true);} });
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
+  /* ── 이메일 복사 ── */
+  var copyBtn = document.getElementById('emailCopyBtn');
+  if (copyBtn) {
+    copyBtn.addEventListener('click', function() {
+      var email = 'folioworksstudio@gmail.com'; var btn = this;
+      function showDone(){ btn.textContent='복사됨'; setTimeout(function(){btn.textContent='복사';},1500); }
+      function fallback(){ var ta=document.createElement('textarea');ta.value=email;ta.style.position='fixed';ta.style.left='-9999px';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');showDone();}catch(e){}document.body.removeChild(ta); }
+      if (navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(email).then(showDone,fallback); } else { fallback(); }
+    });
   }
+
+  render(80, true);
 })();
 </script>
 </body>
